@@ -1,0 +1,13 @@
+import javax.swing.JFrame;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO GUI-Swing Programming
+		//1)제일 먼저 최상위 프레임부터 만들기
+		JFrame frame=new JFrame();
+		frame.setVisible(true);
+
+	}
+
+}

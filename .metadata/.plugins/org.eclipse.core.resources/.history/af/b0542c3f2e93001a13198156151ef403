@@ -1,0 +1,20 @@
+import javax.swing.JFrame;
+
+public class Main2 {
+
+	public static void main(String[] args) {
+		MyFrame frame=new MyFrame();
+
+	}
+
+}
+
+class MyFrame extends JFrame{
+	public MyFrame() {// constructor
+		//본인 클래스의 다른 멤버메소드 호출가능
+		setSize(600, 450);//this생략가능
+		setLocation(700, 350);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setVisible(true);
+	}	
+}

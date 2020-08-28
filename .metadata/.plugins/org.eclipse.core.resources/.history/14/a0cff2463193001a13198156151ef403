@@ -1,0 +1,22 @@
+import javax.swing.JFrame;
+
+public class ButtonEvent extends JFrame {
+	public ButtonEvent() {//Event:Action이 취해지는 상황
+		setTitle("Favorite Menu");
+		setSize(400,450);
+		setLocation(700,350);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		
+		
+		
+		setVisible(true);//이미지는 visible전에 쓰면 붙지않음
+		//텍스트는 visible 후에 써도 가능
+	}//constructor
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		new ButtonEvent();
+	}
+
+}

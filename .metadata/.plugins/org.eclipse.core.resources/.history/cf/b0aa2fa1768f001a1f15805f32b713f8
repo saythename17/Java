@@ -1,0 +1,33 @@
+package Thread_;
+
+public class Test03 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+
+	}
+
+}
+class Work1 extends Thread{
+	Work1(){
+		setName("파일 저장");
+	}
+	@Override
+	public void run() {
+		for(int  i=0;i<100;i++) {
+			System.out.println(this.getName()+"작업중...");
+		}
+	}
+}
+class Work2 extends Thread{
+	Work2(){
+		setName("서버 연결");
+	}
+	@Override
+	public void run() {
+		for(int  i=0;i<100;i++) {
+			System.out.println(this.getName()+"작업중...");
+		}
+	}
+}

@@ -1,0 +1,83 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Scanner;
+
+public class FileOutput_ {
+
+	public static void main(String[] args) {
+		// TODO 사용자로부터 문자열을 입력받아 별도의 파일에 저장
+		Scanner scan=new Scanner(System.in);
+		System.out.print("		저장할 Data 입력 : ");
+		String data=scan.next();
+		
+		//별도의 file과의 무지개로드(Stream)를 만들어주는 해임달 객체(File) 생성
+		//셍성자로 무지개로드를 연결할 위치를 전달해 주어야 함
+		//파일 저장 위치 지정 및 파일명.확장자 지정
+		//디스크의 위치경로를 지정하지 않으면 현재 작업중인 자바문서가 있는 프로젝트 폴더에 저장
+		File file=new File("aaa.txt");
+		
+		//##############파일 저장위치(폴더) 지정#################
+		//프로젝트폴더 안, 특정 폴더에 파일 저장하기
+		file =new File("sevneteen/aaa.txt");//seventeen폴더안 파일저장
+		file =new File("sevneteen\\aaa.txt");//큰따옴표안 역슬래시는 특수문자
+		//경로 구분 문자 [/]-windows :\,/ 모두 사용가능
+		//Linux, MacPC에서는 /만 사용 가능
+		//파일은 없으면 자동으로 만들어주지만 폴더는 만들어주지 않음
+		//프로그램으로 seventeen폴더생성
+		File path=new File("seventeen");
+		if(!path.isDirectory()) {//path참조변수가 가르키는 폴더가 없는가?
+			//폴더가 없으면 생성 (make directory)
+			path.mkdirs();//하위 폴더까지  한꺼번에 만들 수 있음			
+		}
+		//위에서 만든 경로와 파일명.확장자까지 포함한  File객체 새로생성
+		file=new File(path,"aaa.txt");//path경로와 파일명 결합
+		
+		//내 프로젝트가 아닌 특정위치에 저장
+		file=new File("D:/aaa.txt");
+		
+		//특정폴더 지정->경로만 있는 File객체 생성
+		path=new File("D:files/kkk");
+		if(!path.isDirectory()) path.mkdirs();		
+		//위 경로와 파일명을 결합한 File객체 새로이 생성
+		file=new File(path,"aaa.txt");
+		//################################################
+		
+		//파일객체가 가진 파일위치에 데이터를 보내기 위해 무지개로드(Stream)생성
+		//데이터를 내보내는 것이므로 Stream중, OutputStream사용
+		//OutputStream중, File에 데이터를 저장하는 용도의 FileOutputStream사용
+		//만약 Output하려는 문서가 없다면, OutputStream이 자동으로 그 문서를 생성
+		//만약 Output하려는 문서가 있으면, 그 문서를 열고 안에 데이터 저장
+		//기본적으로 FileOutputStream은 기존 데이터를 덮어쓰기 함
+		//→기존 문서에 있던 데이터를 날리고 새로운 데이터로 저장
+		try {
+			//FileOutputStream fos=new FileOutputStream(file);
+			//만약 덮어쓰지않고 이어붙이고 싶다면
+			FileOutputStream fos=new FileOutputStream(file,true);
+			//└두번째 파라미터 : append[덧붙이다]여부:true,false
+			//스트림을 통해 데이터를 파일에 작성(보내기)
+			//FileOutputStream은 한번에 1byte씩만 데이터를 보낼 수 있음
+			//fos.write(65);//대문자 'A'작성==fos.write('A');
+			//1byte씩 데이터를 보내는 방식이 문자열데이터의 경우 불편
+			//문자열(String) 객체의 본인의 값을  byte[]로 변환하는 기능 method 사용
+			byte[] bytes=data.getBytes();//String->byte[]
+			fos.write(bytes);//byte[] 배열로 보내기
+			fos.flush();//[ write-flush ]같이 써야 안전하게 output
+			//flush:물내리기--Stream에 있는 data를 밀어넣기≒enter
+			
+			//언제나 데이터 전송이 끝나면 스트림이 더이상 필요하지 않으므로
+			//스트림을 닫지 않으면 메모리의 누수발생(memory leak:찌꺼기)
+			fos.close();
+			
+			//여기까지 왔다면 저장이 잘 되었다는 것 
+			System.out.println("		파일 저장 성공");
+		} catch (FileNotFoundException e) {
+			System.out.println("		파일이 존재하지 않음");
+		} catch (IOException e) {
+			System.out.println("		쓰기 작업 중 오류 발생");
+		}
+
+	}
+
+}

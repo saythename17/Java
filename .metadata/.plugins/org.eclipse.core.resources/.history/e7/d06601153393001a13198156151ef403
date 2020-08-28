@@ -1,0 +1,36 @@
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class ButtonEvent extends JFrame {
+	public ButtonEvent() {//Event:Action이 취해지는 상황
+		setTitle("Favorite Menu");
+		setSize(400,450);
+		setLocation(700,350);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		//컴포넌트 추가(벽면한번에 꾸며 붙이기)
+		JPanel panel=new JPanel();//판넬과 같은 패널객체
+		//※JPAnel은 기본 FlowLayout으로 지정되어 있음
+		//패널에 컴포넌트 추가
+		JButton btn=new JButton("짜장면");
+		JLabel label=new JLabel("짜장면을 좋아하는 타입");
+		panel.add(btn);
+		panel.add(label);
+		//프레임에 패널 붙이기
+		add(panel);
+		
+		
+		
+		
+		
+		setVisible(true);//이미지는 visible전에 쓰면 붙지않음
+		//텍스트는 visible 후에 써도 가능
+	}//constructor
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		new ButtonEvent();
+	}
+
+}

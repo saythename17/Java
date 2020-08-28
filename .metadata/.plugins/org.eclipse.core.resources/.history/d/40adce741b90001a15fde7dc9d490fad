@@ -1,0 +1,20 @@
+import java.util.Scanner;
+
+public class StringInputOutput {
+
+	public static void main(String[] args) {
+		// 문자열 데이터를 한단어씩 입력받아 별도의 파일에 저장하고 읽어오는 프로그램
+		//사용자로부터 문자열 데이터 입력받기
+		Scanner scan=new Scanner(System.in);
+		//사용자가 NO라는 글자를 입력할때까지 계속 입력
+		while(true) {
+			System.out.print("Input Word(NO->end) : ");
+			String str=scan.nextLine();
+			
+			if(str.equals("NO"))break;//문자열 비교 ==사용불가			
+		}//while
+		System.out.println("======================");
+
+	}//main
+
+}//SIO

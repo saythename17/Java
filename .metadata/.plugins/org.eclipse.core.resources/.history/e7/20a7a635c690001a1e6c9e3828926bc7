@@ -1,0 +1,18 @@
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
+public class Server_ {
+
+	public static void main(String[] args) {
+		//TCP[Transmission control Protocol]통신
+		//IP주소를 알아야 통신가능
+		//자바에서 본인PC의 IP주소 관련정보 관리하는 클래스 : InetAddress
+		
+		
+		try {//		본인IP주소 확인해주는 코드┐ 본인 컴푸터 주소┐
+			System.out.println(InetAddress.getLocalHost().getLoopbackAddress());
+		} catch (UnknownHostException e) {}
+
+	}
+
+}

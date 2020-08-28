@@ -1,0 +1,10 @@
+package Thread_;
+
+public class Test07 {
+	public static void main(String[] args) {
+		Phone call=new Phone();
+		call.start();
+		for(int i=1;i<100;i++) System.out.println("À½½Ä¸Ô±â : "+i);
+	}
+
+}

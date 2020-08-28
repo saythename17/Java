@@ -1,0 +1,101 @@
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class ButtonEvent extends JFrame {
+	JButton btn;//지역변수로 만들면 컴포넌트 제어가 어려워지기때문에	
+	JLabel label;//가급적 컴포넌트들의 참조변수는 멤버변수로 만들것을 권장
+	JLabel label2;	JButton btn2;	JLabel imgLabel1;
+	JLabel imgLabel;//참조변수-기본값null
+	
+	public ButtonEvent() {//Event:Action이 취해지는 상황
+		setTitle("중국집 심리테스트");
+		setSize(400,450);
+		setLocation(700,350);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		//컴포넌트 추가(벽면한번에 꾸며 붙이기)
+		JPanel panel=new JPanel();//판넬과 같은 패널객체
+		//※JPAnel은 기본 FlowLayout으로 지정되어 있음
+		//패널에 컴포넌트 추가	
+	
+		//이미지 변경
+		imgLabel= new JLabel();		
+		ImageIcon icon=new ImageIcon("images/test.png");
+		//이미지 사이즈 변경
+		Image img=icon.getImage();//원본
+		img=img.getScaledInstance(250, 333, Image.SCALE_SMOOTH);
+		icon=new ImageIcon(img);//새로운 사이즈의 이미지 아이콘 객체 생성
+		imgLabel.setIcon(icon);		
+		panel.add(imgLabel);		
+		
+		btn=new JButton("짜장면");
+		label=new JLabel("Type A");
+		panel.add(btn);		panel.add(label);
+		//프레임에 패널 붙이기
+		add(panel);
+		//버튼을 click하면 JLabel의 글씨를 변경
+		//버튼이 클릭되는 Action을 듣는 Listener(스토커)생성&버튼달기
+		//ActionListener: interface: 직접new 객체생성 불가
+		//인터페이스를 구현(implements)한 새로운 class정의&객체로 생성
+		
+		btn.addActionListener(new ActionListener() {			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ImageIcon icon=new ImageIcon("Images/zza.png");
+				Image img=icon.getImage().getScaledInstance(250, 300, Image.SCALE_SMOOTH);
+				imgLabel.setIcon(new ImageIcon(img));						
+			}
+		});		
+		btn2=new JButton("짬뽕");
+		label2=new JLabel("Type B");
+		panel.add(btn2);		panel.add(label2);
+		//버튼 클릭시 이미지 변경
+		btn2.addActionListener(new ActionListener() {			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ImageIcon icon=new ImageIcon("Images/zzam.jpg");
+				Image img=icon.getImage().getScaledInstance(250, 300, Image.SCALE_SMOOTH);
+				imgLabel.setIcon(new ImageIcon(img));						
+				label2.setText("짬뽕을 먹고싶은 심리");
+			}
+		});		
+		
+		setVisible(true);//이미지는 visible전에 쓰면 붙지않음
+			//텍스트는 visible 후에 써도 가능
+			//*1*ClickListener listener=new ClickListener();
+			
+			//*2*실제로는 익명클래스를 더많이 사용
+			ActionListener listener=new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					label.setText("짜장면을 먹고싶은 심리");
+				}				
+			};
+			//위에서 만든 리스너객체를 Button객체에 추가
+			btn.addActionListener(listener);
+		}//constructor
+		/////////////////////////////////////////////////
+		//Define**Inner class implements ActionListener 
+		class ClickListener implements ActionListener{
+		//리스너객체가 바라보는 버튼이 click되면 자동으로 발동:call back method
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Clicked!");
+				//JLabel객체(label)의 글씨 변경
+				//constructor안 local variable을 다른 메소드에서 인식불가
+				//멤버변수로 만들어야 class안 어디서든 인식가능
+				label.setText("짜장면을 좋아하는 타입");
+			}			
+		}////////////////////////////////////////////
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		new ButtonEvent();
+	}
+}//class...

@@ -1,0 +1,62 @@
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Static keyword -variable, method, class(inner)
+		//static local variable,parameter -존재하지 않음
+		//static int a ; → X 사용 불가
+		Test.show();//class method : 객체생성없이 메소드 사용가능
+		
+		Test t1=new Test(1,20);
+		Test t2=new Test(10,50);//t1에서 넣었던 b=20 → 40
+		Test t3=new Test(20,70);//t2의 b=40이 90으로 바뀜
+		
+		t1.a=-1;
+		System.out.println(t1.a);
+		System.out.println(t2.a);
+		System.out.println(t3.a);
+		System.out.println();
+		
+		//b static variable은 Test class개수와 상관없이 1개 생성
+		//b를 변경하면 모든 instance에 모두영향
+		t1.b=-1; t1.b=-2; Test.b=-3;
+		System.out.println(t1.b);
+		System.out.println(t2.b);
+		System.out.println(t3.b);
+		System.out.println();
+		
+		/*static variable은 instance마다 부여되는 것이 아니라
+		  class에 1개만 존재
+		   ∴ static variable 표기법 : 객체명.변수명 X
+		   		                 → class명.static 변수명 */
+		Test.b=100;//으로 표기
+		System.out.println(Test.b+"\n");
+		
+		//ex1) static variable-클래스의 객체(인스턴스)가 몇개 인지 확인 가능
+		new First();
+		new First();
+		new First();
+		// static→method 에 적용
+		
+		t1.shew();
+		//Test.shew();일반(instance) 메소드 : 클래스명.메소드명 -ERROR
+		Test.show();//or t1.show();---class(static) method
+		System.out.println();System.out.println();System.out.println();System.out.println("\n\n\n\n\n\n\n\n\n\n");
+		
+		
+		
+		
+		
+		Test.show();//class method : 객체생성없이 메소드 사용가능
+		
+		AAA.obj.show();//AAA 클래스안 obj라는 static객체안 show메소드
+		System.out.println();//System 클래스안 out멤버변수의 println메소드 사용
+		AAA.obj.kkk();//static은 객체명.static권장X
+		//AAA.BBB.kkk(); ERROR --AAA클래스안 BBB클래스가 존재하지 않으므로
+		BBB.kkk();
+		System.out.println(AAA.MAX);
+		
+		
+	}
+
+}

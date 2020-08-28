@@ -1,0 +1,21 @@
+import javax.swing.JFrame;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO GUI-Swing Programming
+		//1)제일 먼저 최상위 프레임부터 만들기
+		JFrame frame=new JFrame();
+		frame.setSize(500, 400);//기본 가로 500,세로400의 창 설정
+		//2)컴포넌트(Component) 추가
+		//JFrame의 특칭 X(창닫기)버튼을 누르면 창은 없어지지만 
+		//프로그램의 main Thread는 멈추지 않음
+		//∴ java program콘솔창&GUI창 함께 종료시키기┐
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setLocation(700, 300);//프레임위치 설정[좌표x,y]
+		//3)JFrame화면에 보이기
+		frame.setVisible(true);
+
+	}
+
+}
